@@ -16,13 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-use studioplayer::studioplayer::StudioPlayer;
-
-use eframe::{egui::Vec2, run_native, NativeOptions};
-
-fn main() {
-    let app = StudioPlayer::new();
-    let mut win_option = NativeOptions::default();
-    win_option.initial_window_size = Some(Vec2::new(800., 600.));
-    run_native(Box::new(app), win_option);
+pub struct Player {
+    pub title: String,
+    pub artist: String,
 }

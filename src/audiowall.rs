@@ -16,13 +16,30 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-use studioplayer::studioplayer::StudioPlayer;
+pub struct AudioWall {
+    pub items: Vec<AudioWallItem>,
+}
 
-use eframe::{egui::Vec2, run_native, NativeOptions};
+impl AudioWall {
+    pub fn new() -> AudioWall {
+        let mut aw = AudioWall {
+            items: Vec::from_iter((5..14).map(|a| AudioWallItem {
+                title: format!("Station Ad {}", a),
+                playing: false,
+            })),
+        };
+        aw.items[3].title = String::from("This is a very long title for testing purposes");
+        aw
+    }
+}
 
-fn main() {
-    let app = StudioPlayer::new();
-    let mut win_option = NativeOptions::default();
-    win_option.initial_window_size = Some(Vec2::new(800., 600.));
-    run_native(Box::new(app), win_option);
+pub struct AudioWallItem {
+    pub title: String,
+    pub playing: bool,
+}
+
+impl AudioWallItem {
+    pub fn pressed(&mut self) {
+        self.playing = !self.playing;
+    }
 }
