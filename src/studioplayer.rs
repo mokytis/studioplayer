@@ -85,6 +85,7 @@ impl StudioPlayer {
                             .clicked()
                         {
                             println!("clicked");
+                            p.play_test();
                         }
                         if ui
                             .add(
